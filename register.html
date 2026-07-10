@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Kayıt Ol - GrowÇarşı</title>
+  
+  <link rel="stylesheet" href="./lib/assets/style.css"> 
+  
+  <style>
+    .login-wrapper {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 80vh;
+    }
+    .login-box {
+      background: #111926; 
+      border: 1px solid rgba(255, 200, 22, 0.2);
+      padding: 30px;
+      border-radius: 12px;
+      width: 100%;
+      max-width: 400px;
+      color: #fff;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+    }
+    .login-box h2 { text-align: center; margin-bottom: 20px; color: #FFC816; }
+    .input-group { margin-bottom: 15px; }
+    .input-group label { display: block; margin-bottom: 5px; font-size: 14px; }
+    .input-group input {
+      width: 100%; padding: 10px; border-radius: 6px; border: 1px solid #2d3748;
+      background: #1a202c; color: #fff; box-sizing: border-box;
+    }
+    .login-btn {
+      width: 100%; padding: 12px; background: #FFC816; border: none;
+      border-radius: 6px; color: #111; font-weight: bold; cursor: pointer;
+      font-size: 16px; transition: background 0.2s;
+    }
+    .login-btn:hover { background: #e0b213; }
+    .error-msg { color: #ff4655; font-size: 13px; margin-top: 10px; text-align: center; display: none; }
+    .success-msg { color: #2ecc71; font-size: 13px; margin-top: 10px; text-align: center; display: none; }
+  </style>
+</head>
+<body>
+
+  <div class="login-wrapper">
+    <div class="login-box">
+      <h2>GrowÇarşı Kayıt</h2>
+      <form id="register-form">
+        <div class="input-group">
+          <label for="email">E-posta Adresi</label>
+          <input type="email" id="email" required placeholder="ornek@gmail.com">
+        </div>
+        <div class="input-group">
+          <label for="password">Ş1fre (En az 6 karakter)</label>
+          <input type="password" id="password" required placeholder="••••••••">
+        </div>
+        <button type="submit" class="login-btn">Hesap Oluştur</button>
+        
+        <div id="error-message" class="error-msg"></div>
+        <div id="success-message" class="success-msg"></div>
+
+        <div style="text-align: center; margin-top: 15px; font-size: 14px;">
+          <span style="color: #ccc;">Zaten hesabın var mı?</span> 
+          <a href="login.html" style="color: #FFC816; text-decoration: none; font-weight: bold; margin-left: 5px;">Giriş Yap</a>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <script type="module">
+    // CDN üzerinden Firebase kayıt fonksiyonunu çekiyoruz kanka
+    import { auth } from "./auth.js";
+    import { createUserWithEmailAndPassword } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-auth.js";
+
+    const registerForm = document.getElementById("register-form");
+    const errorDiv = document.getElementById("error-message");
+    const successDiv = document.getElementById("success-message");
+
+    if (registerForm) {
+      registerForm.addEventListener("submit", (e) => {
+        e.preventDefault();
+        
+        const email = document.getElementById("email").value;
+        const password = document.getElementById("password").value;
+
+        errorDiv.style.display = "none";
+        successDiv.style.display = "none";
+
+        // Firebase ile yeni kullanıcı yaratma mekanizması
+        createUserWithEmailAndPassword(auth, email, password)
+          .then((userCredential) => {
+            successDiv.style.display = "block";
+            successDiv.innerText = "Hesabın jilet gibi oluşturuldu kanka! Girişe yönlendiriliyorsun...";
+            
+            // 2 saniye sonra giriş sayfasına pasla
+            setTimeout(() => {
+              window.location.href = "login.html";
+            }, 2000);
+          })
+          .catch((error) => {
+            errorDiv.style.display = "block";
+            
+            // Firebase'in hata mesajlarını Türkçeleştirelim
+            if (error.code === "auth/email-already-in-use") {
+              errorDiv.innerText = "Bu e-posta zaten kullanımda kanka!";
+            } else if (error.code === "auth/weak-password") {
+              errorDiv.innerText = "Şifre çok zayıf, en az 6 karakter yap kanka!";
+            } else {
+              errorDiv.innerText = "Kayıt olurken bir hata oluştu: " + error.message;
+            }
+            console.error("Kayıt hatası detay:", error.message);
+          });
+      });
+    }
+  </script>
+</body>
+</html>

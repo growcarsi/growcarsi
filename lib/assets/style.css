@@ -21,6 +21,11 @@
   font-style: normal;
 }
 
+/* style.css dosyasının EN ÜSTÜNE yapıştır kanka */
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap');
+
+/* Altındaki eski yerel font tanımlamalarını (@font-face {...}) tamamen silebilirsin */
+
 
 *, *::before, *::after {
   box-sizing: border-box;
@@ -32,6 +37,13 @@ html {
   -webkit-text-size-adjust: 100%;
   -moz-text-size-adjust: 100%;
   text-size-adjust: 100%;
+}
+
+/* Yatayda taşan/gizli kalan elemanlar (sabit genişlikli SSS kutusu, fixed toast vs.)
+   telefonda yan kaydırma çubuğu açmasın diye emniyet kemeri kanka */
+html, body {
+  max-width: 100%;
+  overflow-x: hidden;
 }
 
 body {
@@ -1087,4 +1099,252 @@ border: 1px solid rgba(255, 200, 22, 0.2);
 
 .back-to-top:hover svg {
   transform: translateY(-2px); /* Hoverda ok yukarı doğru hafifçe esnesin */
+}
+
+
+/* ======================================================== */
+/* KULLANICI GİRİŞ ALANI VE BUTON STİLLERİ                   */
+/* ======================================================== */
+.user-auth-area {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  margin-left: 20px;
+}
+
+#user-profile-name {
+  color: #aaa;
+  font-size: 13px;
+  font-weight: 500;
+  letter-spacing: 0.5px;
+}
+
+.auth-btn {
+  background-color: transparent;
+  color: #ffffff;
+  border: 1px solid #ff4655; /* Oyuncu kırmızısı çerçeve */
+  padding: 8px 18px;
+  font-size: 13px;
+  font-weight: 700;
+  border-radius: 4px;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  transition: all 0.3s ease;
+  display: inline-block;
+}
+
+/* Giriş yap butonuna hover olunca komple parlasın */
+.auth-btn:hover {
+  background-color: #ff4655;
+  color: #fff;
+  box-shadow: 0 0 12px rgba(255, 70, 85, 0.5);
+  transform: translateY(-1px);
+}
+
+/* Çıkış yap butonu için alternatif (opsiyonel soft stil) */
+#nav-logout-btn {
+  border-color: #555;
+  color: #bbb;
+}
+
+#nav-logout-btn:hover {
+  background-color: #333;
+  border-color: #333;
+  color: #fff;
+  box-shadow: none;
+}
+
+
+/* ======================================================== */
+/* GROWÇARŞI MOBİL UYUMLULUK (RESPONSIVE) KATMANI            */
+/* ======================================================== */
+
+@media (max-width: 992px) {
+  /* Navbar'ı mobilde dikey düzene hazırlıyoruz veya elemanları sıkıştırıyoruz */
+  .navbar-container {
+    flex-wrap: wrap;
+    gap: 10px;
+    padding: 10px 15px;
+  }
+  
+  body {
+    /* Mobilde navbar yüksekliği artacağı için üst boşluğu güncelliyoruz */
+    padding-top: calc(var(--ticker-height) + 120px + var(--sub-navbar-height));
+  }
+
+  .main-navbar {
+    height: auto;
+    padding: 10px 0;
+  }
+
+  /* Logoyu ve Auth alanını yan yana üstte tutalım */
+  .nav-logo {
+    order: 1;
+  }
+  
+  .user-auth-area {
+    order: 2;
+    margin-left: auto;
+  }
+
+  /* Arama çubuğunu mobilde tam genişlik yapıp bir alt satıra düşürelim */
+  .nav-search {
+    order: 3;
+    flex: none;
+    width: 100%;
+    margin: 5px 0;
+    max-width: 100%;
+  }
+
+  /* Sepeti de sağ üste, auth alanının yanına yerleştirelim */
+  .nav-cart {
+    order: 2;
+    margin-left: 10px;
+  }
+  
+  /* Mobilde sepet butonunun içindeki uzun yazıyı gizleyip sadece ikonu bırakalım ki sığsın */
+  .cart-info-wrapper {
+    display: none;
+  }
+  .cart-btn {
+    padding: 8px 10px;
+  }
+  .cart-icon {
+    margin-right: 0;
+  }
+}
+
+@media (max-width: 768px) {
+  /* Alt linkler barını mobilde yatayda kaydırılabilir yapıyoruz (Taşma yapmaz) */
+  .sub-navbar-container {
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    padding: 0 10px;
+  }
+  
+  .nav-links {
+    gap: 10px;
+    width: max-content; /* Linklerin sıkışıp alt satıra inmesini önler, yana kayar */
+  }
+
+  .nav-item {
+    padding: 6px 12px;
+    font-size: 13px;
+  }
+
+  /* Kategori Yuvarlakları (Circle Boxes) */
+  .categories-container {
+    gap: 15px;
+  }
+  
+  .circle-box {
+    width: 80px;
+    height: 80px;
+  }
+
+  /* Ana Banner Slider Alanı */
+  .slider-wrapper {
+    height: 250px; /* Mobilde devasa kalmasın */
+  }
+  
+  .slider-btn {
+    padding: 10px 12px;
+    font-size: 18px;
+  }
+
+  /* Sıkça Sorulan Sorular (Faq) Mobilde zaten alta düşüyordu, iç paddingleri azaltalım */
+  .faq-wrapper {
+    padding: 15px;
+  }
+  
+  .faq-item summary {
+    font-size: 12px;
+    padding: 10px;
+  }
+}
+
+@media (max-width: 480px) {
+  /* Çok küçük ekranlar için ekstra ince ayar */
+  .nav-logo img {
+    height: 35px;
+  }
+  
+  .auth-btn {
+    padding: 6px 12px;
+    font-size: 11px;
+  }
+  
+  #user-profile-name {
+    display: none; /* Telefonda 'Misafir' yazısı yer kaplamasın, sadece buton kalsın */
+  }
+  
+  .slider-wrapper {
+    height: 180px; /* Küçük telefonlarda slider yüksekliği */
+  }
+
+  /* Toast bildirimleri telefonda sağdan taşmasın, tam genişliğe yakın otursun */
+  #toast-container {
+    top: 10px;
+    right: 10px;
+    left: 10px;
+  }
+
+  .toast-message {
+    padding: 12px 15px;
+    font-size: 13px;
+  }
+
+  /* Yukarı Çık butonu küçük ekranlarda biraz daha kompakt olsun */
+  .back-to-top {
+    width: 40px;
+    height: 40px;
+    bottom: 20px;
+    right: 15px;
+  }
+
+  /* Kategori yuvarlakları daha da küçük ekranda darlaşsın */
+  .circle-box {
+    width: 70px;
+    height: 70px;
+  }
+}
+
+/* ======================================================== */
+/* ÇOK KÜÇÜK EKRANLAR (≤380px) İÇİN EK İNCE AYAR             */
+/* ======================================================== */
+@media (max-width: 380px) {
+  .ticker-content span {
+    font-size: 13px;
+    margin-right: 30px;
+  }
+
+  .navbar-container {
+    padding: 8px 10px;
+  }
+
+  .nav-search input {
+    padding: 10px 12px;
+    font-size: 13px;
+  }
+
+  .nav-search button {
+    padding: 0 14px;
+  }
+
+  .nav-item {
+    padding: 6px 10px;
+    font-size: 12px;
+  }
+
+  .stat-number {
+    font-size: 22px;
+  }
+
+  .stat-label {
+    font-size: 12px;
+  }
+
+  .footer-about-text {
+    font-size: 13px;
+  }
 }

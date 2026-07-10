@@ -41,6 +41,7 @@
   color: #fff;
   border-radius: 4px 0 0 4px;
   font-size: 14px;
+  min-width: 0; /* flex item taşmasını engeller (mobil) */
 }
 
 .nav-search button {
@@ -51,6 +52,7 @@
   border-radius: 0 4px 4px 0;
   cursor: pointer;
   font-weight: 700;
+  flex-shrink: 0;
 }
 
 /* Sarı sepet butonunun sola fırlamasını engelleyen flex yapısı */
@@ -58,6 +60,7 @@
   position: relative;
   display: flex;
   align-items: center;
+  flex-shrink: 0;
 }
 
 .cart-btn {
@@ -76,6 +79,7 @@
   width: 20px;
   height: 20px;
   object-fit: contain;
+  flex-shrink: 0;
 }
 
 .cart-info-wrapper {
@@ -89,6 +93,7 @@
   font-weight: 700;
   font-size: 14px;
   line-height: 1.2;
+  white-space: nowrap;
 }
 
 .cart-helper-text {
@@ -98,6 +103,7 @@
   text-transform: uppercase;
   letter-spacing: 0.2px;
   margin-top: 1px;
+  white-space: nowrap;
 }
 
 /* Kırmızı sepet sayacı (Badge) */
@@ -143,11 +149,13 @@ body {
 /* SOL TARAF: ÜRÜN LİSTESİ */
 .cart-left-block {
   flex: 2.5;
+  min-width: 0; /* flex taşma önleyici */
   background: #ffffff;
   border: 1px solid #e0e0e0;
   border-radius: 8px;
   padding: 25px;
   box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+  box-sizing: border-box;
 }
 
 .cart-left-block h2 {
@@ -167,6 +175,7 @@ body {
   padding: 20px 0;
   border-bottom: 1px solid #eee;
   gap: 20px;
+  flex-wrap: wrap; /* mobilde satır kırılabilsin */
 }
 
 .cart-item-img-wrapper img {
@@ -180,12 +189,14 @@ body {
 
 .cart-item-info {
   flex: 2;
+  min-width: 140px;
 }
 
 .cart-item-info h4 {
   margin: 0 0 5px 0;
   font-size: 16px;
   color: #1a1a1a;
+  word-break: break-word;
 }
 
 .cart-item-qty {
@@ -217,6 +228,7 @@ body {
   display: flex;
   align-items: center;
   gap: 3px;
+  padding: 6px 0; /* mobilde parmakla dokunma alanını büyütür */
 }
 
 .cart-item-delete-btn:hover {
@@ -257,6 +269,7 @@ body {
   box-shadow: 0 2px 10px rgba(0,0,0,0.05);
   position: sticky;
   top: 100px;
+  box-sizing: border-box;
 }
 
 .summary-sticky-box h3 {
@@ -326,27 +339,6 @@ body {
 }
 
 /* ======================================================== */
-/* 3. RESPONSIVE (MOBİL) AYARLAR                            */
-/* ======================================================== */
-@media (max-width: 992px) {
-  .cart-page-container {
-    flex-direction: column;
-  }
-  .cart-right-block {
-    width: 100%;
-  }
-  .nav-container {
-    flex-wrap: wrap;
-    gap: 15px;
-  }
-  .nav-search {
-    order: 3;
-    max-width: 100%;
-    margin: 0;
-  }
-}
-
-/* ======================================================== */
 /* MİKTAR ARTTIRMA / AZALTMA BUTON STİLLERİ                 */
 /* ======================================================== */
 .quantity-controller {
@@ -400,15 +392,18 @@ body {
     align-items: center;
     justify-content: center;
     z-index: 9999;
+    padding: 15px; /* mobilde overlay kenardan taşmasın */
+    box-sizing: border-box;
 }
 
 .checkout-modal-box {
     background-color: #ffffff;
     width: 100%;
     max-width: 500px;
+    max-height: 90vh;
+    overflow-y: auto; /* mobilde uzun içerik scroll ile açılsın */
     border-radius: 8px;
     box-shadow: 0 5px 25px rgba(0,0,0,0.2);
-    overflow: hidden;
     animation: modalFadeIn 0.3s ease-out;
 }
 
@@ -425,6 +420,9 @@ body {
     justify-content: space-between;
     align-items: center;
     border-bottom: 3px solid #FFC816;
+    position: sticky;
+    top: 0;
+    z-index: 1;
 }
 
 .modal-header h2 {
@@ -439,6 +437,8 @@ body {
     font-size: 24px;
     cursor: pointer;
     transition: color 0.2s;
+    line-height: 1;
+    padding: 4px 8px; /* dokunma alanı büyütüldü */
 }
 
 .close-modal-btn:hover {
@@ -471,6 +471,8 @@ body {
     background-color: #f9f9f9;
     padding: 10px;
     border-radius: 4px;
+    gap: 10px;
+    flex-wrap: wrap;
 }
 
 .modal-total-payment strong {
@@ -508,6 +510,7 @@ body {
     display: inline-block;
     margin-top: 4px;
     color: #1a1a1a;
+    word-break: break-all; /* uzun IBAN mobilde taşmasın */
 }
 
 .iban-warning {
@@ -601,4 +604,177 @@ body {
     color: #666;
     margin: 0;
     line-height: 1.4;
+}
+
+/* ======================================================== */
+/* 3. RESPONSIVE (MOBİL / TABLET) AYARLAR                    */
+/* ======================================================== */
+
+/* --- TABLET: 992px altı --- */
+@media (max-width: 992px) {
+  .cart-page-container {
+    flex-direction: column;
+  }
+  .cart-right-block {
+    width: 100%;
+    min-width: 0;
+  }
+  .summary-sticky-box {
+    position: static; /* mobilde sticky gerek yok, sayfayla akıp gitsin */
+    top: auto;
+  }
+  .nav-container {
+    flex-wrap: wrap;
+    gap: 15px;
+  }
+  .nav-search {
+    order: 3;
+    max-width: 100%;
+    margin: 0;
+  }
+}
+
+/* --- MOBİL: 768px altı --- */
+@media (max-width: 768px) {
+  .cart-page-wrapper {
+    padding: 20px 0;
+  }
+  .cart-page-container {
+    padding: 0 12px;
+    gap: 20px;
+  }
+  .cart-left-block,
+  .summary-sticky-box {
+    padding: 16px;
+  }
+  .cart-left-block h2 {
+    font-size: 19px;
+    margin-bottom: 18px;
+    padding-bottom: 12px;
+  }
+
+  /* Ürün satırını mobilde satır satır (görsel + bilgi / fiyat + sil) düzene sok */
+  .cart-item-row {
+    padding: 15px 0;
+    gap: 12px;
+  }
+  .cart-item-img-wrapper img {
+    width: 60px;
+    height: 60px;
+  }
+  .cart-item-info {
+    flex: 1 1 auto;
+  }
+  .cart-item-info h4 {
+    font-size: 14px;
+  }
+  .cart-item-price {
+    font-size: 16px;
+  }
+
+  .main-navbar {
+    padding: 10px 0;
+  }
+  .nav-container {
+    padding: 0 12px;
+  }
+  .nav-brand .logo {
+    height: 36px;
+  }
+  .nav-search {
+    margin: 0;
+  }
+  .nav-search input {
+    padding: 8px 10px;
+    font-size: 13px;
+  }
+  .nav-search button {
+    padding: 8px 14px;
+    font-size: 13px;
+  }
+  .cart-btn {
+    padding: 6px 10px;
+    height: 38px;
+    gap: 6px;
+  }
+  .cart-text {
+    font-size: 12px;
+  }
+  .cart-helper-text {
+    font-size: 8px;
+  }
+
+  .checkout-complete-btn {
+    padding: 13px;
+    font-size: 15px;
+  }
+
+  .why-growcarsi-box h4 {
+    font-size: 14px;
+  }
+  .why-text h5 {
+    font-size: 13px;
+  }
+  .why-text p {
+    font-size: 11px;
+  }
+}
+
+/* --- KÜÇÜK MOBİL: 480px altı --- */
+@media (max-width: 480px) {
+  /* Arama çubuğunu tam genişlik yaparak navbar'ı 2 satıra düzgün böl */
+  .nav-search {
+    order: 3;
+    width: 100%;
+  }
+  .nav-container {
+    justify-content: space-between;
+  }
+  .nav-brand {
+    order: 1;
+  }
+  .nav-cart {
+    order: 2;
+  }
+
+  .cart-helper-text {
+    display: none; /* çok küçük ekranda yardımcı metni gizle, buton sığsın */
+  }
+
+  /* Ürün satırını kartvari, dikey akışa çevir */
+  .cart-item-row {
+    flex-wrap: wrap;
+  }
+  .cart-item-img-wrapper {
+    order: 1;
+  }
+  .cart-item-info {
+    order: 2;
+    flex: 1;
+    min-width: 0;
+  }
+  .cart-item-price-delete {
+    order: 3;
+    width: 100%;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 8px;
+    padding-top: 8px;
+    border-top: 1px dashed #eee;
+  }
+
+  .quantity-controller {
+    margin-top: 6px;
+  }
+
+  .modal-header h2 {
+    font-size: 16px;
+  }
+  .modal-body {
+    padding: 15px;
+  }
+  .modal-footer {
+    padding: 12px 15px;
+  }
 }

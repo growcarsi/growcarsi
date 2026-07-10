@@ -12,5 +12,8 @@
   },
   "author": "",
   "license": "ISC",
-  "type": "commonjs"
+  "type": "commonjs",
+  "dependencies": {
+    "firebase": "^12.16.0"
+  }
 }
