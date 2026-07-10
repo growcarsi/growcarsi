@@ -1,0 +1,273 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>İletişim | GrowÇarşı</title>
+    
+    <style>
+        /* Sade ve Resmi Kurumsal Tema */
+        body {
+            background-color: #ffffff;
+            color: #333333;
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            line-height: 1.7;
+        }
+
+        /* Sub-Navbar Aynen Korundu kanka */
+        .sub-navbar {
+            background-color: #111111;
+            padding: 15px 0;
+            border-bottom: 2px solid #ff4655;
+        }
+        .sub-navbar-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        .nav-links {
+            list-style: none;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            gap: 25px;
+        }
+        .nav-item {
+            color: #aaaaaa;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 15px;
+            transition: color 0.2s ease;
+        }
+        .nav-item:hover {
+            color: #ffffff;
+        }
+        .nav-item.highlight {
+            color: #ff4655;
+        }
+
+        /* İletişim İçerik Alanı */
+        .legal-container {
+            max-width: 800px;
+            margin: 60px auto;
+            padding: 0 20px;
+        }
+
+        .legal-box {
+            background: #ffffff;
+            padding: 20px 0;
+        }
+
+        .legal-title {
+            font-size: 28px;
+            color: #111111;
+            margin: 0 0 8px 0;
+            font-weight: 700;
+        }
+
+        .legal-subtitle {
+            font-size: 13px;
+            color: #666666;
+            margin-bottom: 25px;
+        }
+
+        .legal-divider {
+            border: 0;
+            height: 1px;
+            background: #e0e0e0;
+            margin-bottom: 35px;
+        }
+
+        .contact-grid {
+            display: grid;
+            grid-template-columns: 1.2fr 1fr;
+            gap: 40px;
+            margin-top: 20px;
+        }
+
+        @media (max-width: 768px) {
+            .contact-grid {
+                grid-template-columns: 1fr;
+                gap: 30px;
+            }
+        }
+
+        /* İletişim Kanalları */
+        .contact-info-section h3 {
+            color: #111111;
+            font-size: 18px;
+            margin-top: 0;
+            margin-bottom: 15px;
+            font-weight: 600;
+        }
+
+        .contact-info-list {
+            list-style: none;
+            padding: 0;
+            margin: 0 0 30px 0;
+        }
+
+        .contact-info-list li {
+            font-size: 15px;
+            margin-bottom: 12px;
+            color: #444444;
+        }
+
+        .contact-info-list strong {
+            color: #111111;
+        }
+
+        /* Sade Form Alanları */
+        .form-group {
+            margin-bottom: 18px;
+        }
+
+        .form-group label {
+            display: block;
+            font-size: 14px;
+            font-weight: 600;
+            margin-bottom: 6px;
+            color: #111111;
+        }
+
+        .form-control {
+            width: 100%;
+            padding: 10px 12px;
+            font-size: 14.5px;
+            border: 1px solid #cccccc;
+            border-radius: 6px;
+            box-sizing: border-box;
+            font-family: inherit;
+            color: #333333;
+            transition: border-color 0.2s;
+        }
+
+        .form-control:focus {
+            outline: none;
+            border-color: #ff4655; /* Odaklanınca hafif kırmızı sınır */
+        }
+
+        textarea.form-control {
+            resize: vertical;
+            min-height: 100px;
+        }
+
+        /* Butonlar */
+        .submit-btn {
+            background-color: #ff4655; /* İletişim formu gönder butonu dikkat çeksin */
+            color: #ffffff;
+            border: none;
+            font-weight: 600;
+            font-size: 14px;
+            padding: 12px 24px;
+            border-radius: 6px;
+            cursor: pointer;
+            transition: background-color 0.2s ease;
+            width: 100%;
+            text-transform: uppercase;
+        }
+
+        .submit-btn:hover {
+            background-color: #e03e4b;
+        }
+
+        .legal-footer-btn {
+            margin-top: 50px;
+            border-top: 1px solid #e0e0e0;
+            padding-top: 30px;
+            text-align: left;
+        }
+
+        .back-to-home-btn {
+            display: inline-block;
+            background-color: #111111;
+            color: #ffffff;
+            font-weight: 600;
+            font-size: 14px;
+            text-decoration: none;
+            padding: 12px 24px;
+            border-radius: 6px;
+            transition: background-color 0.2s ease;
+        }
+
+        .back-to-home-btn:hover {
+            background-color: #333333;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- ÜST HEADER / SUB-NAVBAR KANKA -->
+    <nav class="sub-navbar">
+        <div class="sub-navbar-container">
+            <ul class="nav-links">
+                <li><a href="index.html" class="nav-item">DL & BGL Satışı</a></li>
+                <li><a href="hakkimizda.html" class="nav-item">Hakkımızda</a></li>
+                <li><a href="iletisim.html" class="nav-item highlight">İletişim</a></li>
+                <li><a href="yardim.html" class="nav-item">Yardım</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- İLETİŞİM ALANI -->
+    <main class="legal-container">
+        <div class="legal-box">
+            <h1 class="legal-title">İletişim</h1>
+            <p class="legal-subtitle">Bizimle Doğrudan Bağlantıya Geçin</p>
+            
+            <hr class="legal-divider">
+
+            <div class="contact-grid">
+                
+                <!-- SOL TARAF: FORM -->
+                <section class="contact-form-section">
+                    <form action="#" method="POST" onsubmit="alert('Mesajınız başarıyla alındı kanka!'); return false;">
+                        <div class="form-group">
+                            <label for="contact-name">Adınız Soyadınız / GrowID</label>
+                            <input type="text" id="contact-name" class="form-control" placeholder="Örn: GrowMan" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="contact-email">E-posta Adresiniz</label>
+                            <input type="email" id="contact-email" class="form-control" placeholder="name@example.com" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="contact-subject">Konu</label>
+                            <input type="text" id="contact-subject" class="form-control" placeholder="Sipariş, Hata Bildirimi vb." required>
+                        </div>
+                        <div class="form-group">
+                            <label for="contact-message">Mesajınız</label>
+                            <textarea id="contact-message" class="form-control" placeholder="Sorunuzu detaylıca yazın kanka..." required></textarea>
+                        </div>
+                        <button type="submit" class="submit-btn">Mesajı Gönder</button>
+                    </form>
+                </section>
+
+                <!-- SAĞ TARAF: BİLGİLER -->
+                <section class="contact-info-section">
+                    <h3>Resmi Destek Kanalları</h3>
+                    <ul class="contact-info-list">
+                        <li><strong>E-posta:</strong> growcarsii@gmail.com</li>
+                        <li><strong>Discord:</strong> <a href="#" style="color: #ff4655; text-decoration: none; font-weight: 600;">Discord Sunucumuza Katıl</a></li>
+                    </ul>
+
+                    <h3>Çalışma Saatleri</h3>
+                    <ul class="contact-info-list">
+                        <li><strong>Hafta İçi:</strong> 09:00 - 00:00</li>
+                        <li><strong>Hafta Sonu:</strong> 10:00 - 01:00</li>
+                    </ul>
+
+                    <p style="font-size: 14px; color: #666; text-align: justify;">Siparişlerinizle ilgili sorunlarda hızlı çözüm almak için lütfen mesajınıza <strong>Sipariş Numarasını</strong> eklemeyi unutmayın kanka.</p>
+                </section>
+
+            </div>
+            
+            <div class="legal-footer-btn">
+                <a href="index.html" class="back-to-home-btn">Ana Sayfaya Dön</a>
+            </div>
+        </div>
+    </main>
+
+</body>
+</html>

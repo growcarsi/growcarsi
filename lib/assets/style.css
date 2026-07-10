@@ -1,0 +1,1090 @@
+@font-face {
+  font-family: 'Roboto';
+  src: url('fonts/Roboto-Regular.woff2') format('woff2'); /* Dosya yolun farklıysa burayı güncelle kanka */
+  font-weight: 400;
+  font-style: normal;
+}
+
+/* 2. Orta Kalınlık (Medium) */
+@font-face {
+  font-family: 'Roboto';
+  src: url('fonts/Roboto-Medium.woff2') format('woff2');
+  font-weight: 500;
+  font-style: normal;
+}
+
+/* 3. Kalın Yazı (Bold) */
+@font-face {
+  font-family: 'Roboto';
+  src: url('fonts/Roboto-Bold.woff2') format('woff2');
+  font-weight: 700;
+  font-style: normal;
+}
+
+
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  -webkit-text-size-adjust: 100%;
+  -moz-text-size-adjust: 100%;
+  text-size-adjust: 100%;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  font-family: 'Roboto', sans-serif;
+  background-color: #fff;
+  /* Toplam üst yükseklik kadar boşluk bırakıyoruz ki içerik görünür olsun */
+  padding-top: calc(var(--ticker-height) + var(--navbar-height) + var(--sub-navbar-height));
+}
+
+img, picture, video, canvas, svg {
+  display: block;
+  max-width: 100%;
+  height: auto;
+}
+
+input, button, textarea, select {
+  font: inherit;
+}
+
+button {
+  cursor: pointer;
+  background: none;
+  border: none;
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+ul, ol {
+  list-style: none;
+}
+
+table {
+  border-collapse: collapse;
+  border-spacing: 0;
+}
+
+h1, h2, h3, h4, h5, h6, p {
+  overflow-wrap: break-word;
+}
+
+#root, #__next {
+  isolation: isolate;
+}
+
+:root {
+  --ticker-height: 35px;
+  --navbar-height: 70px;
+  --sub-navbar-height: 45px; /* Yeni eklenen alt barın yüksekliği */
+}
+
+.ticker-wrapper {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: var(--ticker-height);
+  background-color: #FFC816;
+  color: #fff;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  z-index: 1001;
+}
+
+/* Yazıların yan yana dizilip akacağı alan */
+.ticker-content {
+  display: flex;
+  white-space: nowrap;
+  padding-left: 100%;
+  animation: kaydir 30s linear infinite; /* Süreyi biraz artırmak gerekebilir */
+}
+
+/* İçerideki her bir yazı elementinin stili */
+.ticker-content span {
+  cursor: default;
+  font-weight: 700; /* Roboto'nun Bold halini kullansın */
+  font-size: 15px;  /* Roboto fontu 15px-16px civarında kayan barda çok net okunur */
+  margin-right: 50px; 
+  letter-spacing: 0.5px; /* Harfleri çok az açarsan e-ticaret havası pekişir */
+}
+
+/* Sağdan sola kayma animasyonu */
+@keyframes kaydir {
+  0% {
+    transform: translate3d(0, 0, 0);
+  }
+  100% {
+    transform: translate3d(-100%, 0, 0); /* Kendini tamamen sola itene kadar */
+  }
+}
+
+.main-navbar {
+  position: fixed;
+  top: var(--ticker-height); /* Kayan yazının hemen altından başlar */
+  left: 0;
+  width: 100%;
+  height: 40%;
+  height: var(--navbar-height);
+  background-color: #222; /* Navbar arka planı */
+  border-bottom: 2px solid #2d2d2d; /* Altına ince şık bir çizgi */
+  z-index: 1000;
+  display: flex;
+  align-items: center;
+}
+
+/* İçeriği hizalayan esnek container */
+.navbar-container {
+  width: 100%;
+  max-width: 1200px; /* Sitenin çok yayılmaması için güvenli genişlik */
+  margin: 0 auto;
+  padding: 0 20px;
+  display: flex;
+  justify-content: space-between; /* Sol, orta ve sağı eşit dağıtır */
+  align-items: center;
+}
+
+/* 1. LOGO ALANI */
+.nav-logo img {
+  height: 45px; /* Logonun yüksekliğini buradan ayarlayabilirsin */
+  width: auto;
+  display: block;
+}
+
+/* 2. ORTA ALAN - GENİŞ INPUT (ARAMA) */
+.nav-search {
+  display: flex;
+  flex: 1; /* Ortadaki boşluğu tamamen kaplamasını sağlar */
+  max-width: 600px; /* Aşırı devasa olmasın diye sınır koyduk */
+  margin: 0 40px; /* Sağdan soldan logoya ve sepete çok yapışmasın */
+}
+
+.nav-search input {
+  width: 100%;
+  padding: 12px 15px;
+  background-color: #fff;
+  border: 1px solid #aaa;
+  border-radius: 4px 0 0 4px; /* Sol köşeler oval */
+  color: #222;
+  font-family: 'Roboto', sans-serif;
+  font-size: 14px;
+  outline: none;
+  transition: border-color 0.3s;
+}
+
+.nav-search input:focus {
+  border-color: #ff4655; /* Arama çubuğuna tıklayınca oyuncu kırmızısı parlasın */
+}
+
+.nav-search button {
+  padding: 0 20px;
+  background-color: #ff4655; /* Dikkat çekici buton rengi */
+  border: none;
+  border-radius: 0 4px 4px 0; /* Sağ köşeler oval */
+  color: #fff;
+  font-weight: 700;
+  cursor: pointer;
+  transition: background 0.3s;
+}
+
+.nav-search button:hover {
+  background-color: #e03e4b;
+}
+
+/* ======================================================== */
+/* ARAMA ÖNERİLERİ (DROPDOWN) VE KART PARLAMA EFEKTLERİ      */
+/* ======================================================== */
+.search-suggestions {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  width: 100%;
+  background-color: #1a1a1a;
+  border: 1px solid #2d2d2d;
+  border-top: none;
+  border-radius: 0 0 8px 8px;
+  max-height: 250px;
+  overflow-y: auto;
+  z-index: 99999;
+  display: none; /* Başlangıçta gizli */
+  box-shadow: 0 8px 24px rgba(0,0,0,0.7);
+}
+
+.suggestion-item {
+  padding: 12px 15px;
+  font-size: 13px;
+  color: #ffffff;
+  cursor: pointer;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  transition: background-color 0.2s;
+  border-bottom: 1px solid #222;
+}
+
+.suggestion-item:last-child {
+  border-bottom: none;
+}
+
+.suggestion-item:hover {
+  background-color: #282828;
+}
+
+.suggestion-count {
+  font-size: 11px;
+  color: #ff4655; /* Oyuncu kırmızısı */
+  background-color: rgba(255, 70, 85, 0.1);
+  padding: 2px 8px;
+  border-radius: 12px;
+  font-weight: bold;
+}
+
+/* Karta zıplayınca kartın etrafında patlayacak neon ışık efekti */
+@keyframes cardFlash {
+  0% { transform: scale(1); box-shadow: 0 0 0px rgba(255, 200, 22, 0); }
+  50% { transform: scale(1.03); box-shadow: 0 0 25px #FFC816; border-color: #FFC816; }
+  100% { transform: scale(1); box-shadow: 0 0 0px rgba(255, 200, 22, 0); }
+}
+
+.flash-highlight {
+  animation: cardFlash 1.5s ease-in-out;
+}
+
+/* 3. SAĞ ALAN - SEPETİM */
+.nav-cart {
+  display: flex;
+  align-items: center;
+}
+
+.cart-btn {
+  display: flex;
+  align-items: center;
+  text-decoration: none;
+  color: #fff;
+  background-color: #FFC816;
+  padding: 10px 15px;
+  border-radius: 4px;
+  position: relative;
+  transition: background 0.3s;
+}
+
+.cart-btn:hover {
+  background-color: #ff6000;
+}
+
+.cart-icon {
+  height: 20px; /* İndireceğin ikonun boyutu otomatik ayarlanır */
+  width: auto;
+  margin-right: 10px;
+}
+
+.cart-text {
+  font-size: 14px;
+  font-weight: 500;
+}
+
+.cart-badge {
+  position: absolute;
+  top: -8px;
+  right: -8px;
+  background-color: #ff4655;
+  color: #fff;
+  font-size: 11px;
+  font-weight: 700;
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* ALT NAVİGASYON BARININ KENDİSİ (SİMSİYAH) */
+.sub-navbar {
+  position: fixed;
+  top: calc(var(--ticker-height) + var(--navbar-height)); 
+  left: 0;
+  width: 100%;
+  height: var(--sub-navbar-height);
+  background-color: #FFC816; /* Kanka burayı simsiyah yaptık */
+  z-index: 999;
+}
+
+/* Container flex kalsın ama içindeki elemanlar navbar yüksekliğine eşitlebilsin */
+.sub-navbar-container {
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 20px;
+  height: 100%; /* İçindeki listenin tam yüksekliği almasını sağlar */
+}
+
+/* Menü listesi */
+.nav-links {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  height: 100%; /* Navbar boyunu eşitle */
+  align-items: center; /* Butonları dikeyde ortala */
+  gap: 15px; /* Butonlar arasındaki boşluk */
+}
+
+/* Her bir listenin elemanı */
+.nav-links li {
+  height: 100%; /* Li elemanları da tam yükseklik olsun */
+  display: flex;
+  align-items: center;
+}
+
+/* GENEL BUTON STİLİ (Hepsini kutu gibi yapıyoruz) */
+.nav-item {
+  text-decoration: none;
+  color: #222; 
+  font-size: 14px;
+  font-weight: 500;
+  padding: 8px 16px; /* İç boşluk vererek tam bir kutu formu kazandırıyoruz */
+  border-radius: 4px; /* Köşeleri hafif oval şık bir kutu */
+  transition: all 0.3s ease;
+  display: inline-block; /* Kutu gibi davranmasını sağlayan sihirli kod */
+}
+
+/* Normal butonların hover hali */
+.nav-item:hover {
+  color: #fff;
+  background-color: #1a1a1a; /* Üzerine gelince hafif siyah/gri kutu olsun */
+}
+
+/* ÖNE ÇIKAN KUTU: "Oyun Paraları" (İstediğin o tam siyah kutu) */
+.nav-item.highlight {
+  color: #fff; 
+  background-color: #151515; /* Navbar siyah olduğu için bu kutuyu hafif açık siyah yaptık ki belli olsun */
+  border: 1px solid #ff4655;  /* Çevresine oyuncu kırmızısı bir çerçeve */
+  font-weight: 700; 
+}
+
+/* "Oyun Paraları" kutusunun hover hali */
+.nav-item.highlight:hover {
+  color: #fff;
+  background-color: #ff4655; /* Fareyle üzerine gelince kutunun içi komple kırmızı dolsun, fena parlar! */
+  box-shadow: 0 0 10px rgba(255, 70, 85, 0.4); /* Hafif neon parlaması */
+}
+
+/* --- 1. KATMAN: YUVARLAK LOGOLAR (KATEGORİLER) --- */
+.categories-bar {
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 20px;
+  box-sizing: border-box;
+}
+
+/* Yuvarlakları yan yana dizen ve aralarına boşluk bırakan container */
+.categories-container {
+  display: flex;
+  justify-content: center; /* Ortala dedik, sola yaslamak istersen flex-start yap kanka */
+  gap: 20px;              /* Yuvarlakların arasındaki mesafe */
+  flex-wrap: wrap;        /* Ekran küçülürse alt satıra insinler, taşmasınlar */
+}
+
+/* ======================================================== */
+/* CIRCLE-BOX ETRAFIMDA DÖNEN NEON RGB EFEKTİ              */
+/* ======================================================== */
+
+.circle-box {
+  position: relative;
+  width: 100px;  /* Sitedeki mevcut genişliğine göre ayarla kanka */
+  height: 100px; /* Sitedeki mevcut yüksekliğine göre ayarla kanka */
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden; /* Taşacak olan dönen dikdörtgeni gizlemek için şart */
+  background: #111; /* Arkadaki boşluk rengi */
+  z-index: 1;
+}
+
+/* Arkada dönecek olan neon ışık çizgisi */
+.circle-box::before {
+  content: '';
+  position: absolute;
+  width: 150%;  /* Kutudan büyük yapıyoruz ki dönerken köşeler açık kalmasın kanka */
+  height: 150%;
+  /* GrowÇarşı kırmızısından başlayıp parlayan sarıya giden geçiş */
+  background: conic-gradient(#ff4655, #ffc816, transparent 60%);
+  animation: neonDonus 4s linear infinite;
+  z-index: -2;
+}
+
+/* Görselin dönen neonun üstünü kapatıp ince bir çizgi bırakması için maske */
+.circle-box::after {
+  content: '';
+  position: absolute;
+  /* Kaç piksel ince çizgi istiyorsan inset değerini ona göre artır/azalt (4px ideal) */
+  inset: 4px; 
+  background: #1a1a1a; /* Sitenin arka plan rengiyle aynı yap kanka */
+  border-radius: 50%;
+  z-index: -1;
+}
+
+/* İçerideki asıl resmin stilleri */
+.circle-box img {
+  width: calc(100% - 8px); /* Çizginin altında kalmasın diye hafif küçülttük */
+  height: calc(100% - 8px);
+  border-radius: 50%;
+  object-fit: cover;
+  z-index: 2;
+  transition: transform 0.3s ease;
+}
+
+.circle-box:hover::before {
+  animation-duration: 1.5s; /* Hoverda dönme hızı coşsun kanka */
+}
+
+/* DÖNME ANİMASYONU */
+@keyframes neonDonus {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+
+/* --- 2. KATMAN: ANA BÜYÜK GÖRSEL (BANNER) & SSS ALANI --- */
+.main-banner-section {
+  width: 100%;
+  max-width: 1200px; /* Sitenin ana hizalama sınırı */
+  margin: 10px auto 40px auto;
+  padding: 0 20px;
+  box-sizing: border-box;
+  
+  /* SSS kutusunun bu hizayı referans alması için relative kalıyor */
+  position: relative; 
+}
+
+/* Kapsayıcı: Yüksekliği slider ile eşitleyip flex düzenini kaldırıyoruz */
+.banner-faq-container {
+  position: relative;
+  width: 100%;
+  height: 450px; 
+}
+
+/* Sol taraftaki mevcut slider: Kendi orijinal genişliğini kullanır, milim sıkışmaz */
+.slider-wrapper {
+  position: relative;
+  width: 100%; /* SSS bunu kesinlikle İTTİREMEZ, tamamen özgür kanka */
+  height: 100%;
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
+  z-index: 5;
+}
+
+/* Resimlerin durduğu ana alan */
+.slider-container {
+  width: 100%;
+  height: 100%;
+  position: relative;
+}
+
+/* Her bir slide resminin stili */
+.slide {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  opacity: 0;
+  transition: opacity 0.8s ease-in-out;
+  z-index: 1;
+}
+
+.slide.active {
+  opacity: 1;
+  z-index: 2;
+}
+
+.slide img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* SAĞ VE SOL OK BUTONLARI */
+.slider-btn {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background-color: rgba(0, 0, 0, 0.6);
+  color: #fff;
+  border: none;
+  font-size: 24px;
+  padding: 15px 20px;
+  cursor: pointer;
+  z-index: 10;
+  transition: background 0.3s, color 0.3s;
+  border-radius: 4px;
+  user-select: none;
+}
+
+.slider-btn:hover {
+  background-color: #ff4655;
+}
+
+.prev-btn { left: 20px; }
+.next-btn { right: 20px; }
+
+/* ZAMAN BARI TASARIMI */
+.progress-bar-container {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 5px;
+  background-color: rgba(255, 255, 255, 0.2);
+  z-index: 10;
+}
+
+.progress-bar {
+  height: 100%;
+  width: 0%;
+  background-color: #ff4655;
+}
+
+/* SLIDER YUVARLAK NOKTALARI (DOTS) */
+.slider-dots {
+  position: absolute;
+  bottom: 20px; /* Zaman barının hemen üstünde havada dursunlar */
+  left: 50%;
+  transform: translateX(-50%); /* Tam yatayda ortalama sihri kanka */
+  display: flex;
+  gap: 10px; /* Yuvarlakların arasındaki boşluk */
+  z-index: 12; /* Resimlerin ve okların üstünde kalmalı */
+}
+
+.dot {
+  width: 12px;
+  height: 12px;
+  background-color: rgba(255, 255, 255, 0.4); /* Aktif olmayanlar yarı şeffaf beyaz */
+  border-radius: 50%; /* Tam yuvarlak yapar */
+  cursor: pointer;
+  transition: all 0.3s ease;
+  border: 1px solid rgba(0, 0, 0, 0.3);
+}
+
+/* Fareyle üzerine gelince hafif belirginleşsin */
+.dot:hover {
+  background-color: rgba(255, 255, 255, 0.8);
+  transform: scale(1.1);
+}
+
+/* O ANKİ AKTİF RESMİN NOKTASI */
+.dot.active {
+  background-color: #ff4655; /* Aktif olan nokta jilet gibi kırmızı yansın kanka */
+  width: 24px; /* Hafif uzun ovalleşme efekti verir, çok moderndir */
+  border-radius: 6px;
+  box-shadow: 0 0 8px rgba(255, 70, 85, 0.6); /* Hafif neon ışıma */
+}
+
+/* ======================================================== */
+/* YENİ: SLIDER'I ASLA İTTİRMEYEN VE DIŞARI YAPIŞAN SSS      */
+/* ======================================================== */
+.faq-wrapper {
+  position: absolute;
+  top: 0;
+  
+  /* KANKA SİHİRLİ DOKUNUŞ BURASI: 
+     Kutuyu sağa dayayıp, kendi genişliği kadar (+ boşluk payı) sağa itiyoruz.
+     Böylece slider'ın üstüne binmez, onu daraltmaz, ekranın sağ boşluğunda havada asılı kalır. */
+  right: -380px; 
+  
+  width: 360px; /* SSS sabit net genişliği */
+  height: 450px; /* Slider yüksekliğiyle birebir eşit */
+  background-color: #1a1a1a;
+  border: 1px solid #2d2d2d;
+  border-radius: 8px;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  box-sizing: border-box;
+  z-index: 15;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
+}
+
+.faq-title-row {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 15px;
+  border-bottom: 1px solid #2d2d2d;
+  padding-bottom: 10px;
+}
+
+.faq-title-row h3 {
+  margin: 0;
+  font-size: 16px;
+  color: #ffffff;
+  font-weight: 700;
+  letter-spacing: 0.5px;
+}
+
+/* SSS İçerik Listesi ve Kaydırma Alanı */
+.faq-list {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  overflow-y: auto;
+  flex: 1;
+}
+
+/* İnce ve şık oyuncu temalı scrollbar */
+.faq-list::-webkit-scrollbar {
+  width: 4px;
+}
+.faq-list::-webkit-scrollbar-thumb {
+  background: #ff4655;
+  border-radius: 4px;
+}
+.faq-list::-webkit-scrollbar-track {
+  background: #222;
+}
+
+.faq-item {
+  background-color: #222222;
+  border: 1px solid #333333;
+  border-radius: 6px;
+  overflow: hidden;
+}
+
+.faq-item[open] {
+  border-color: #FFC816;
+}
+
+.faq-item summary {
+  padding: 12px 15px;
+  font-size: 13px;
+  font-weight: 500;
+  color: #ffffff;
+  cursor: pointer;
+  list-style: none;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  user-select: none;
+}
+
+.faq-item summary::-webkit-details-marker {
+  display: none;
+}
+
+.faq-arrow {
+  font-size: 9px;
+  color: #888;
+  transition: transform 0.2s;
+}
+
+.faq-item[open] .faq-arrow {
+  transform: rotate(180deg);
+  color: #FFC816;
+}
+
+.faq-item summary:hover {
+  background-color: #282828;
+}
+
+.faq-answer {
+  padding: 0 15px 12px 15px;
+  background-color: #1e1e1e;
+  border-top: 1px solid #2c2c2c;
+}
+
+.faq-answer p {
+  margin: 8px 0 0 0;
+  font-size: 12px;
+  color: #cccccc;
+  line-height: 1.6;
+}
+
+/* EKRAN DARALDIĞINDA MOBİL DÜZEN (SSS ALTA GEÇER) */
+@media (max-width: 1600px) {
+  /* Ekran genişliği SSS kutusunu dışarıda taşıyamayacak kadar daralırsa 
+     slider'a basmasın diye akışı alta alıyoruz kanka */
+  .main-banner-section {
+    max-width: 1200px;
+  }
+  .banner-faq-container {
+    height: auto;
+  }
+  .slider-wrapper {
+    height: 450px;
+  }
+  .faq-wrapper {
+    position: static;
+    width: 100%;
+    height: auto;
+    margin-top: 20px;
+  }
+}
+
+/* ======================================================== */
+/* GÜVEN VE İSTATİSTİK ALANI (STATS) CSS                    */
+/* ======================================================== */
+.stats-section {
+  width: 100%;
+  background-color: #fff; /* Diğer alanlarla birleşsin diye koyu premium siyah */
+  padding: 60px 20px;
+  box-sizing: border-box;
+  margin: 0 !important; /* Beyaz sızıntıları önlemek için kilit */
+}
+
+.stats-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  display: flex;
+  justify-content: space-around; /* Kutuları eşit aralıklarla dağıtır */
+  align-items: center;
+  gap: 30px;
+  flex-wrap: wrap; /* Mobilde alt alta gelsinler diye */
+}
+
+.stat-box {
+  flex: 1;
+  min-width: 250px;
+  max-width: 350px;
+  background-color: #1a1a1a; /* Kart arka planı */
+  padding: 30px 20px;
+  border-radius: 12px;
+  text-align: center;
+  border: 1px solid #FFC816;
+  transition: transform 0.3s ease, border-color 0.3s ease;
+}
+
+/* Fareyle kutunun üstüne gelince çok hafif parlasın kanka */
+.stat-box:hover {
+  transform: translateY(-5px);
+  border-color: #FFC816;
+}
+
+.stat-icon {
+  margin-bottom: 15px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.stat-number {
+  color: #ffffff;
+  font-family: 'Roboto', sans-serif;
+  font-size: 32px;
+  font-weight: 700;
+  margin: 0 0 5px 0;
+  letter-spacing: 1px;
+}
+
+.stat-label {
+  color: #888888;
+  font-family: 'Roboto', sans-serif;
+  font-size: 14px;
+  font-weight: 500;
+  margin: 0;
+  text-transform: uppercase; /* Harfleri otomatik büyütür, kurumsal durur */
+  letter-spacing: 0.5px;
+}
+
+/* --- MOBİL UYUMLULUK --- */
+@media (max-width: 768px) {
+  .stats-section {
+    padding: 40px 10px;
+  }
+  .stat-box {
+    padding: 20px 15px;
+  }
+  .stat-number {
+    font-size: 26px;
+  }
+}
+
+
+/* ======================================================== */
+/* MODERN FOOTER STİLLERİ                                   */
+/* ======================================================== */
+.site-footer {
+  width: 100%;
+  background-color: #111111; /* Sitenin en karanlık, en asil noktası */
+  border-top: 3px solid #FFC816; /* Sitenin sarı temasıyla footer'ı ayıran jilet çizgi */
+  padding: 60px 0 20px 0;
+  font-family: 'Roboto', sans-serif;
+  color: #ffffff;
+}
+
+.footer-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 20px;
+  display: flex;
+  justify-content: space-between;
+  gap: 40px;
+  flex-wrap: wrap; /* Mobilde tıkır tıkır alt alta geçsinler */
+}
+
+/* 1. Sütun: Marka Alanı (Büyük Logo) */
+.footer-brand-column {
+  flex: 2; /* Logolu alanı diğer sütunlara göre biraz daha geniş tutuyoruz */
+  min-width: 280px;
+}
+
+.footer-logo img {
+  height: 65px; /* Kanka logoyu belirgin ve büyük yaptık */
+  width: auto;
+  margin-bottom: 20px;
+}
+
+.footer-about-text {
+  color: #aaaaaa;
+  font-size: 14px;
+  line-height: 1.6;
+  margin-bottom: 20px;
+  max-width: 400px;
+}
+
+/* Sosyal Medya İkonları */
+.footer-socials {
+  display: flex;
+  gap: 12px;
+}
+
+.social-icon img {
+  width: 32px; /* İkonların ideal boyutu */
+  height: 32px;
+  transition: transform 0.2s ease, filter 0.2s ease;
+  cursor: pointer;
+}
+
+.social-icon img:hover {
+  transform: scale(1.15);
+  filter: brightness(1.2); /* Üzerine gelince parlasın */
+}
+
+/* 2. ve 3. Sütun: Link Listeleri */
+.footer-links-column {
+  flex: 1;
+  min-width: 180px;
+}
+
+.footer-links-column h4, 
+.footer-contact-column h4 {
+  font-size: 16px;
+  font-weight: 700;
+  letter-spacing: 1px;
+  margin-bottom: 20px;
+  color: #FFC816; /* Başlıklar sarı oyuncu rengi */
+}
+
+.footer-links-column ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.footer-links-column ul li {
+  margin-bottom: 12px;
+}
+
+.footer-links-column ul li a {
+  color: #cccccc;
+  font-size: 14px;
+  transition: color 0.2s ease, padding-left 0.2s ease;
+}
+
+/* Hover olunca oyuncu kırmızısına kaysın ve hafif sağa kaysın */
+.footer-links-column ul li a:hover {
+  color: #ff4655;
+  padding-left: 5px;
+}
+
+/* 4. Sütun: İletişim & Ödeme Yöntemleri */
+.footer-contact-column {
+  flex: 1.5;
+  min-width: 250px;
+}
+
+.footer-support-box {
+  background-color: #1a1a1a;
+  border-left: 4px solid #ff4655; /* Canlı destek kırmızısı şerit */
+  padding: 15px;
+  border-radius: 0 8px 8px 0;
+  margin-bottom: 25px;
+}
+
+.support-email {
+  display: block;
+  font-weight: 700;
+  font-size: 15px;
+  color: #ffffff;
+  margin-bottom: 4px;
+}
+
+.support-hours {
+  font-size: 12px;
+  color: #888888;
+  text-transform: uppercase;
+}
+
+/* Ödeme Badgeleri Tasarımı */
+.footer-payments h5 {
+  font-size: 12px;
+  color: #888888;
+  margin-bottom: 12px;
+  letter-spacing: 1px;
+}
+
+.payment-badges {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+.badge-pay {
+  background-color: #222222;
+  color: #eeeeee;
+  font-size: 11px;
+  font-weight: 600;
+  padding: 6px 12px;
+  border-radius: 4px;
+  border: 1px solid #333333;
+}
+
+/* En Alt Telif Alanı */
+.footer-bottom {
+  max-width: 1200px;
+  margin: 40px auto 0 auto;
+  padding: 20px 20px 0 20px;
+  border-top: 1px solid #222222;
+  text-align: center;
+}
+
+.footer-bottom p {
+  color: #666666;
+  font-size: 12px;
+  line-height: 1.5;
+}
+
+/* --- RESPONSIVE AYARLAR --- */
+@media (max-width: 768px) {
+  .footer-container {
+    flex-direction: column;
+    gap: 30px;
+  }
+  .footer-brand-column {
+    flex: 1;
+  }
+}
+
+
+/* --- SEPET YANINDAKİ KÜÇÜK BİLGİ METNİ --- */
+.cart-info-wrapper {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  margin-right: 5px;
+}
+
+.cart-helper-text {
+  font-size: 10px;
+  color: #888888;
+  font-weight: 500;
+  margin-top: 2px;
+  letter-spacing: 0.3px;
+  text-transform: uppercase;
+}
+
+/* --- DİNAMİK TOAST BİLDİRİM STİLLERİ --- */
+#toast-container {
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  z-index: 9999;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.toast-message {
+  background-color: #1a1a1a;
+  color: #ffffff;
+  border-left: 4px solid #2ecc71; /* Başarılı yeşili kanka */
+  padding: 15px 25px;
+  border-radius: 4px;
+  font-family: 'Roboto', sans-serif;
+  font-size: 14px;
+  font-weight: 500;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5);
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  transform: translateX(120%);
+  transition: transform 0.3s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+}
+
+/* Bildirim ekrana girdiğinde tetiklenecek class */
+.toast-message.show {
+  transform: translateX(0);
+}
+
+/* ======================================================== */
+/* YUKARI ÇIK (BACK TO TOP) BUTONU STİLLERİ                  */
+/* ======================================================== */
+.back-to-top {
+  position: fixed;
+  bottom: 30px;
+  right: 30px;
+  width: 45px;
+  height: 45px;
+  background-color: #ff4655; /* GrowÇarşı'nın o canlı oyuncu kırmızısı */
+  border-radius: 50%; /* Tam yuvarlak */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.4);
+  cursor: pointer;
+  z-index: 9999; /* Her şeyin en üstünde dursun */
+  
+  /* Başlangıçta gizli ve hafif aşağıda olsun (Animasyonlu giriş için) */
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(20px);
+  transition: all 0.3s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+}
+
+/* Butonun ekranda belirme class'ı (JS ile tetikleyeceğiz) */
+.back-to-top.show {
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0);
+}
+
+/* Hover Efekti */
+.back-to-top:hover {
+  background-color: #FFC816; /* Üzerine gelince sarı yansın kanka */
+  box-shadow: 0 0 15px rgba(255, 200, 22, 0.6);
+  transform: scale(1.1);
+}
+
+.back-to-top svg {
+  transition: transform 0.3s;
+}
+
+.back-to-top:hover svg {
+  transform: translateY(-2px); /* Hoverda ok yukarı doğru hafifçe esnesin */
+}

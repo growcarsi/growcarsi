@@ -1,0 +1,338 @@
+/* --- ÜRÜNLER GENEL ALANI (Yarı Siyah Tonu ve %100 Genişlik) --- */
+.products-section {
+  width: 100%; 
+  background-color: #1a1a1a; 
+  /* Kanka, margin-top ve margin-bottom'ı 0 yaptık ki aralardan beyazlık sızmasın, bloklar birbirine yapışsın */
+  margin: 0 !important; 
+  padding: 40px 20px;
+  box-sizing: border-box;
+  border-bottom: 3px solid #FFC816;
+  border-top: 3px solid #FFC816;
+}
+
+.products-filter-bar, 
+.products-grid {
+  max-width: 1200px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+/* --- ÜST FİLTRE BARINI TAŞIYAN ALAN --- */
+.products-filter-bar {
+  display: flex;
+  align-items: flex-end; 
+  border-bottom: 2px solid #FFC816; 
+  margin-bottom: 30px;
+  padding-bottom: 0; 
+}
+
+.filter-tab, .filter-btn {
+  background-color: #ffffff; 
+  color: #1a1a1a;            
+  padding: 10px 20px;
+  font-family: 'Roboto', sans-serif;
+  font-size: 14px;
+  font-weight: 600;          
+  border: none;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  border-radius: 6px 6px 0 0; 
+  cursor: pointer;
+  transition: all 0.2s ease;
+  margin-bottom: -2px; 
+}
+
+.stock-tab {
+  background-color: #ffffff;
+  font-weight: 700;
+  margin-right: 60px; 
+}
+.tab-icon {
+  height: 16px;
+  width: auto;
+}
+
+.count-tab {
+  background-color: #ffffff; 
+  color: #555555; 
+  cursor: default;
+  margin-right: 90px; 
+}
+
+.filter-btn {
+  margin-right: 10px; 
+}
+
+.filter-btn:hover {
+  background-color: #ff4655; 
+  color: #ffffff;            
+}
+
+/* --- ÜRÜN KARTLARI (GRID SİSTEMİ) --- */
+.products-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr); 
+  gap: 25px; /* Kartlar dışarı taşacağı için gap'i biraz artırdım kanka overlap olmasınlar */
+}
+
+/* --- ÜRÜN KARTININ KENDİSİ (BEYAZ & BORDER'SIZ) --- */
+.product-card {
+  position: relative; 
+  background-color: #ffffff; 
+  border: none; 
+  
+  /* KANKA BURASI KRİTİK: Kartın üst köşeleri normal oval, ama alt köşeleri (özellikle sağ altı) derinlemesine yuvarlak! */
+  border-radius: 8px 8px 30px 20px; 
+  
+  overflow: visible; /* Butonun dışarı taşabilmesi için bunu kesinlikle 'visible' yapıyoruz kanka */
+  display: flex;
+  flex-direction: column;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15); 
+}
+
+.product-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.3); 
+}
+
+/* KARTIN ÜST KISMI */
+.card-top {
+  position: relative;
+  width: 100%;
+  height: 240px; 
+  border-top-left-radius: 8px; /* Üst resim köşeleri taşmasın diye */
+  border-top-right-radius: 8px;
+  overflow: hidden;
+}
+
+.card-top img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* Rozetler */
+.badge {
+  position: absolute;
+  top: 12px;
+  font-size: 11px;
+  font-weight: 700;
+  padding: 4px 8px;
+  border-radius: 4px;
+  z-index: 5;
+}
+
+.badge-new {
+  left: 12px;
+  background-color: #00c853;
+  color: #fff;
+}
+
+.badge-discount {
+  right: 12px;
+  background-color: #ff4655;
+  color: #fff;
+}
+
+/* KARTIN ALT KISMI */
+.card-bottom {
+  padding: 15px 15px 25px 15px; 
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+}
+
+/* Ürün Adı */
+.product-title {
+  margin: 0 0 15px 0;
+  font-size: 14px;
+  font-weight: 600;
+  color: #1a1a1a; 
+  line-height: 1.4;
+  display: -webkit-box;
+  line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+/* Fiyat ve Sepet Butonunun Satırı */
+.price-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end; 
+  margin-top: auto;
+  padding-right: 40px; /* Buton içeri bindiği için fiyata çarpmasın diye pay */
+}
+
+.price-container {
+  display: flex;
+  flex-direction: column; 
+  gap: 2px;
+}
+
+/* ESKİ ÜSTÜ ÇİZİLİ FİYAT */
+.old-price {
+  font-size: 12px;
+  color: #888888; 
+  text-decoration: line-through; 
+  font-weight: 500;
+}
+
+/* GERÇEK GÜNCEL FİYAT */
+.product-price {
+  font-size: 16px;
+  font-weight: 700;
+  color: #ff4655;
+}
+
+/* --- SAĞ ALTTAKİ TAM YUVARLAK VE DIŞARI TAŞAN SEPET BUTONU --- */
+.card-cart-btn {
+  position: absolute; 
+  bottom: -5px;  /* Kartın alt sınırından hafifçe dışarı taşırıyoruz */
+  right: -5px;   /* Kartın sağ sınırından hafifçe dışarı taşırıyoruz */
+  width: 46px;   /* Tam ideal yuvarlak espor butonu boyutu */
+  height: 46px;
+  border-radius: 50%; /* Kusursuz tam yuvarlak kanka */
+  background-color: #ff4655; 
+  
+  /* Kartın o aşırı yuvarlatılmış sağ alt köşesini gizlesin ve taşarken jilet gibi dursun diye kalın beyaz çerçeve */
+  border: 3px solid #ffffff;  
+  
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  padding: 0;
+  box-shadow: 0 4px 12px rgba(255, 70, 85, 0.35); /* Kırmızımsı neon gölge */
+  z-index: 10;
+}
+
+.card-cart-btn:hover {
+  background-color: #1a1a1a; 
+  transform: scale(1.1); /* Hover olunca hafifçe büyüsün patlasın */
+  box-shadow: 0 6px 15px rgba(0, 0, 0, 0.5);
+}
+
+.card-cart-btn img {
+  width: 16px;
+  height: auto;
+  filter: brightness(0) invert(1); 
+  transition: filter 0.2s;
+}
+
+/* --- STOKTA KALMAYAN (SOLD OUT) KART ÖZEL STİLLERİ --- */
+
+/* Kartın genelini hafif sönükleştiriyoruz */
+.product-card.sold-out-card {
+  opacity: 0.7;
+  pointer-events: none; /* Tıklanamaz ve hover efektleri tetiklenemez olur */
+  box-shadow: none; /* Parlama gölgesini kapatıyoruz kanka */
+}
+
+/* Hover durumunda yukarı zıplamasını engellemek için sabitleyebiliriz */
+.product-card.sold-out-card:hover {
+  transform: none;
+  box-shadow: none;
+}
+
+/* Stokta kalmayan kartın görselini siyah-beyaz yapıyoruz, efsane duruyor */
+.sold-out-card .card-top img {
+  filter: grayscale(100%);
+}
+
+/* TÜKENDİ Rozeti (Koyu Gri / Antrasit Tonlarında) */
+.badge-sold-out {
+  left: 12px;
+  background-color: #333333; /* Siyah temaya uygun asil bir koyu gri */
+  color: #ffffff;
+  border: 1px solid #555555;
+}
+
+/* Stokta kalmayan ürünün fiyatını da biraz sönük yapalım */
+.sold-out-card .product-price {
+  color: #888888;
+}
+
+/* Sepet butonunu tamamen ortadan kaldırıyoruz veya gizliyoruz */
+.sold-out-card .card-cart-btn {
+  display: none !important;
+}
+
+
+/* --- ARADAKİ BOYDAN BOYA GÖRSELLİ BANNER ALANI --- */
+.middle-banner-area {
+  width: 100%;
+  height: 250px; /* Banner'ın dikey yüksekliğini buradan kafana göre ayarlayabilirsin kanka */
+  
+  /* ARKA PLAN GÖRSELİ AYARLARI */
+  background-image: linear-gradient(rgba(21, 21, 21, 0.5), rgba(21, 21, 21, 0.5)), url('/lib/assets/imgs/growdirt.png'); 
+  background-position: center; /* Görseli tam ortalar */
+  background-size: cover;      /* Görseli bozmadan alanı boydan boya kaplatır */
+  background-repeat: no-repeat;
+  
+  display: flex;
+  flex-direction: column;
+  align-items: center; /* Yatayda ortalama */
+  justify-content: center; /* Dikeyde ortalama */
+  box-sizing: border-box;
+  border-top: 1px solid #2d2d2d;
+  border-bottom: 1px solid #2d2d2d;
+  position: relative;
+}
+
+/* Tam ortadaki yuvarlak div */
+.middle-circle-box {
+  width: 100px; 
+  height: 100px;
+  border-radius: 50%;
+  overflow: hidden;
+  border: 3px solid #FFC816; 
+  background-color: #1a1a1a;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 15px;
+  box-shadow: 0 0 20px rgba(255, 200, 22, 0.3);
+  z-index: 2; /* Görselin üstünde net dursun diye */
+}
+
+.middle-circle-box img {
+  width: 75%;
+  height: 75%;
+  object-fit: contain;
+}
+
+/* Yazı Stilleri (Görsel üstünde z-index ile öne alıyoruz) */
+.middle-banner-area h2 {
+  color: #ffffff;
+  font-family: 'Roboto', sans-serif;
+  font-size: 26px;
+  font-weight: 700;
+  letter-spacing: 2px;
+  margin: 0 0 5px 0;
+  z-index: 2;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.8); /* Arka plan görselinden bağımsız rahat okunsun diye gölge kanka */
+}
+
+.middle-banner-area p {
+  color: #cccccc; /* Yazıyı bir tık daha beyazlattım görsel üstünde parlasın diye */
+  font-family: 'Roboto', sans-serif;
+  font-size: 14px;
+  margin: 0;
+  z-index: 2;
+  text-shadow: 0 1px 3px rgba(0, 0, 0, 0.8);
+}
+
+/* --- RESPONSIVE AYARLAR --- */
+@media (max-width: 1024px) {
+  .products-grid { grid-template-columns: repeat(3, 1fr); }
+}
+@media (max-width: 768px) {
+  .products-grid { grid-template-columns: repeat(2, 1fr); }
+}
+@media (max-width: 480px) {
+  .products-grid { grid-template-columns: 1fr; }
+}

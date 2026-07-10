@@ -1,0 +1,16 @@
+{
+  "name": "growmarket",
+  "version": "1.0.0",
+  "description": "",
+  "main": "sepet.js",
+  "directories": {
+    "lib": "lib"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "javascript-obfuscator lib/src/script-orj.js --output lib/src/script.js && javascript-obfuscator lib/src/sepet-orj.js --output sepet.js"
+  },
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs"
+}

@@ -1,0 +1,307 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <title>GrowÇarşı | Güvenli Growtopia DL, BGL ve Hesap Mağazası</title>
+    
+    <meta name="description" content="GrowÇarşı güvencesiyle en ucuz Growtopia Diamond Lock (DL), Blue Gem Lock (BGL) ve güvenli, doğrulanmış oyuncu hesapları 7/24 anında teslimatla kapında!">
+    
+    <meta name="keywords" content="growtopia dl satışı, growtopia bgl satın al, ucuz dl, growtopia hesap satışı, güvenli growtopia mağazası, growçarsı, bgl fiyatları, growtopia dükkanı">
+    
+    <meta name="robots" content="index, follow">
+    <meta name="author" content="GrowÇarşı">
+    
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://www.growcarsi.com/"> <meta property="og:title" content="GrowÇarşı | Güvenli Growtopia Mağazası">
+    <meta property="og:description" content="En ucuz DL, BGL ve güvenli oyun hesapları 7/24 GrowÇarşı'da!">
+    <meta property="og:image" content="https://www.growcarsi.com/lib/assets/imgs/growman.jpg"> <meta property="twitter:card" content="summary_large_image">
+    <meta property="twitter:title" content="GrowÇarşı | Güvenli Growtopia Mağazası">
+    <meta property="twitter:description" content="En ucuz DL, BGL ve güvenli oyun hesapları 7/24 anında teslimatla!">
+    <meta property="twitter:image" content="https://www.growcarsi.com/lib/assets/imgs/growman.jpg">
+
+    <link rel="icon" type="image/jpeg" href="lib/assets/imgs/growman.jpg">
+
+    <link rel="stylesheet" href="lib/assets/style.css?v=1.0">
+    <link rel="stylesheet" href="lib/assets/products.css?v=1.0">
+    
+    <script src="lib/src/script.js?v=1.0" defer></script>
+</head>
+<body>
+<!-- Tüm üst alan tek bir semantik <header> içinde toplanmalı -->
+<header class="site-header">
+  
+  <!-- En Üstteki Kayan Yazı Barı -->
+  <div class="ticker-wrapper">
+    <div class="ticker-content" id="ticker"></div>
+  </div>
+
+  <!-- Ana Menü: Logo, Arama, Sepet -->
+  <div class="main-navbar">
+    <div class="navbar-container">
+      <div class="nav-logo">
+        <a href="/"><img src="/lib/assets/imgs/growcarsilogo.png" alt="Oyun Mağazası Logo"></a>
+      </div>
+<div class="nav-search" style="position: relative;"> <input type="text" placeholder="Ürün ara...">
+  <button type="button">Ara</button>
+  
+  <div id="searchSuggestions" class="search-suggestions"></div>
+</div>
+<div class="nav-cart">
+  <a href="/sepet.html" class="cart-btn">
+    <img src="/lib/assets/imgs/urun/sepet-icon.png" alt="Sepet" class="cart-icon">
+    <div class="cart-info-wrapper">
+      <span class="cart-text">Sepetim</span>
+      <!-- YENİ: İnsanların tıklayıp ödeme yapacağını anlatan küçük bilgi alanı -->
+      <span class="cart-helper-text">Ödeme Yapmak İçin Tıkla</span>
+    </div>
+    <span class="cart-badge" id="nav-cart-badge">0</span>
+  </a>
+</div>
+    </div>
+  </div>
+
+  <!-- YENİ: Alt Linkler ve Kategoriler Alanı (Semantik <nav> etiketi ile) -->
+<nav class="sub-navbar">
+  <div class="sub-navbar-container">
+    <ul class="nav-links">
+      <!-- Oyun Paraları ismi DL & BGL Satışı oldu ve ana sayfaya (index.html) bağlandı -->
+      <li><a href="/" class="nav-item highlight">GrowÇarşı</a></li>
+      <li><a href="/hakkimizda.html" class="nav-item">Hakkımızda</a></li>
+      <li><a href="/iletisim.html" class="nav-item">İletişim</a></li>
+      <li><a href="/yardim.html" class="nav-item">Yardım</a></li>
+    </ul>
+  </div>
+</nav>
+
+</header>
+
+<!-- Sitenin asıl içeriği bundan sonra bu <main> etiketinin içine gelecek -->
+<main class="site-content">
+
+<section class="categories-bar">
+    <div class="categories-container">
+      
+      <div class="circle-box" onclick="kategoriyeKay('products-filter-bar')" style="cursor: pointer;">
+        <img src="/lib/assets/imgs/growman.jpg" alt="Growtopia Diamonds">
+      </div>
+      
+      <div class="circle-box" onclick="kategoriyeKay('accounts-filter-bar')" style="cursor: pointer;">
+        <img src="/lib/assets/imgs/urun/hesap.png" alt="Growtopia Accounts">
+      </div>
+
+    </div>
+  </section>
+
+ <section class="main-banner-section">
+    <div class="banner-faq-container">
+      
+  <div class="slider-wrapper">
+  <div class="slider-container" id="sliderContainer">
+    <div class="slide active"><img src="/lib/assets/imgs/urun/growcarsi1.png" alt="Kampanya 1"></div>
+    <div class="slide"><img src="/lib/assets/imgs/urun/growcarsi2.png" alt="Kampanya 2"></div>
+    <div class="slide"><img src="/lib/assets/imgs/urun/growcarsi3.png" alt="Kampanya 3"></div>
+  </div>
+
+  <button class="slider-btn prev-btn" id="prevBtn">&#10094;</button>
+  <button class="slider-btn next-btn" id="nextBtn">&#10095;</button>
+
+  <div class="progress-bar-container">
+    <div class="progress-bar" id="progressBar"></div>
+  </div>
+
+  <div class="slider-dots" id="sliderDots">
+    <span class="dot active" data-slide="0"></span>
+    <span class="dot" data-slide="1"></span>
+    <span class="dot" data-slide="2"></span>
+  </div>
+</div>
+
+      <div class="faq-wrapper">
+        <div class="faq-title-row">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="#FFC816" width="22" height="22">
+            <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 16h-2v-2h2v2zm1.07-7.75l-.9.92C12.45 11.9 12 12.5 12 14h-2v-.5c0-1.1.45-2.1 1.17-2.83l1.24-1.26c.37-.36.59-.86.59-1.41 0-1.1-.9-2-2-2s-2 .9-2 2H7c0-2.76 2.24-5 5-5s5 2.24 5 5c0 1.04-.42 1.99-1.07 2.75z"/>
+          </svg>
+          <h3>Sıkça Sorulan Sorular</h3>
+        </div>
+
+        <div class="faq-list">
+          <details class="faq-item" open>
+            <summary>Siparişler ne kadar sürede teslim edilir? <span class="faq-arrow">▼</span></summary>
+            <div class="faq-answer">
+              <p>GrowÇarşı üzerinden verdiğin tüm DL, WL ve Hesap siparişleri, 7/24 canlı destek ekibimiz tarafından genellikle 5 ila 30 dakika içerisinde hızlıca teslim edilir.</p>
+            </div>
+          </details>
+
+          <details class="faq-item">
+            <summary>Ödeme yöntemleri nelerdir, güvenli mi? <span class="faq-arrow">▼</span></summary>
+            <div class="faq-answer">
+              <p>Ödemelerini IBAN'ımıza havaleyle yapabilirsin. Bu yöntemle ödemelerin %100 güvenli şekilde gerçekleşir.</p>
+            </div>
+          </details>
+
+          <details class="faq-item">
+            <summary>Hesap satışlarında patlama riski var mı? <span class="faq-arrow">▼</span></summary>
+            <div class="faq-answer">
+              <p>Sitemizde satılan tüm Growtopia hesapları tamamen doğrulanmış ve güvenli tedarikçilerden alınmıştır. İlk e-posta güvencesiyle teslim edilir.</p>
+            </div>
+          </details>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <section class="products-section">
+  <div class="products-filter-bar" id="products-filter-bar">
+    <div class="filter-tab stock-tab">
+      <img src="/lib/assets/imgs/urun/lists-icon.png" alt="Stok" class="tab-icon">
+      <span>Stoktakiler</span>
+    </div>
+    <div class="filter-tab count-tab">
+      <span>Toplam <strong id="productCount">0</strong> Ürün</span>
+    </div>
+    <button type="button" class="filter-btn">Fiyata Göre Sırala</button>
+    <button type="button" class="filter-btn">Popülerliğe Göre Sırala</button>
+  </div>
+
+  <div class="products-grid" id="products-container"></div>
+</section>
+
+<div class="middle-banner-area">
+  <div class="middle-circle-box">
+    <img src="/lib/assets/imgs/urun/hesap.png" alt="Oyun Hesapları">
+  </div>
+  <h2>OYUN HESAPLARI</h2>
+  <p>Güvenli, Doğrulanmış Hesapları Keşfedin</p>
+</div>
+
+<section class="products-section">
+  <div class="products-filter-bar" id="accounts-filter-bar">
+    <div class="filter-tab stock-tab">
+      <img src="/lib/assets/imgs/urun/lists-icon.png" alt="Hesap" class="tab-icon"> 
+      <span>Satılık Hesaplar</span>
+    </div>
+    <div class="filter-tab count-tab">
+      <span>Toplam <strong id="accountCount">0</strong> Hesap</span>
+    </div>
+    <button type="button" class="filter-btn">Fiyata Göre Sırala</button>
+    <button type="button" class="filter-btn">Popülerliğe Göre Sırala</button>
+  </div>
+
+  <div class="products-grid" id="accounts-container"></div>
+</section>
+
+<section class="stats-section">
+  <div class="stats-container">
+
+    <div class="stat-box">
+      <div class="stat-icon">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="#FFC816" width="36" height="36">
+          <path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5-4-8-4z"/>
+        </svg>
+      </div>
+      <h3 class="stat-number">124+</h3>
+      <p class="stat-label">Mutlu Müşteri</p>
+    </div>
+
+    <div class="stat-box">
+      <div class="stat-icon">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="#ff4655" width="36" height="36">
+          <path d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm-5 14H4v-4h11v4zm0-5H4V9h11v4zm5 5h-4V9h4v9z"/>
+        </svg>
+      </div>
+      <h3 class="stat-number">367+</h3>
+      <p class="stat-label">Teslim Edilen Sipariş</p>
+    </div>
+
+    <div class="stat-box">
+      <div class="stat-icon">
+        <div class="stars-row">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="#FFC816" width="28" height="28"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
+        </div>
+      </div>
+      <h3 class="stat-number">5.0/5</h3>
+      <p class="stat-label">Müşteri Puanı</p>
+    </div>
+
+  </div>
+</section>
+
+</main>
+
+<footer class="site-footer">
+  <div class="footer-container">
+
+    <div class="footer-brand-column">
+      <a href="/" class="footer-logo">
+        <img src="/lib/assets/imgs/growcarsilogo.png" alt="GrowÇarşı Logo">
+      </a>
+      <p class="footer-about-text">
+        GrowÇarşı, Türkiye'nin en aktif Growtopia topluluğuna jilet gibi hızlı ve güvenli hizmet sunar. DL, WL ve aradığın en nadir Growtopia hesapları anında teslimat avantajıyla 7/24 kapında!
+      </p>
+      <div class="footer-socials">
+        <a href="#" class="social-icon"><img src="/lib/assets/imgs/growdc.png" alt="Discord"></a>
+        <a href="#" class="social-icon"><img src="/lib/assets/imgs/growinstagram.png" alt="Instagram"></a>
+        <a href="#" class="social-icon"><img src="/lib/assets/imgs/growfacebook.png" alt="FaceBook"></a>
+      </div>
+    </div>
+
+    <div class="footer-links-column">
+      <h4>Hızlı Linkler</h4>
+      <ul>
+        <li><a href="/">Ana Sayfa</a></li>
+        <li><a href="/hakkimizda.html">Hakkımızda</a></li>
+        <li><a href="/iletisim.html">İletişim</a></li>
+        <li><a href="/yardim.html">Yardım Merkezi</a></li>
+      </ul>
+    </div>
+
+    <div class="footer-links-column">
+      <h4>Kurumsal & Sözleşmeler</h4>
+      <ul>
+        <li><a href="/kvkk.html">KVKK Aydınlatma Metni</a></li>
+        <li><a href="/mesafeli-satis.html">Mesafeli Satış Sözleşmesi</a></li>
+        <li><a href="/iptal-iade.html">İptal ve İade Koşulları</a></li>
+        <li><a href="/geri-odeme.html">Geri Ödeme Politikası</a></li>
+      </ul>
+    </div>
+
+    <div class="footer-contact-column">
+      <h4>Destek & İletişim</h4>
+      <div class="footer-support-box">
+        <span class="support-email">growcarsii@gmail.com</span>
+        <span class="support-hours">7/24 Canlı Destek</span>
+      </div>
+      
+      <div class="footer-payments">
+        <h5>ÖDEME YÖNTEMLERİ</h5>
+        <div class="payment-badges">
+          <span class="badge-pay">Kredi Kartı</span>
+          <!-- <span class="badge-pay">Papara</span>
+          <span class="badge-pay">Havale/EFT</span>
+          <span class="badge-pay">Crypto</span> -->
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <div class="footer-bottom">
+    <p>&copy; 2026 GrowÇarşı. Tüm Hakları Saklıdır. Bu site Growtopia (Robinson Technologies) ile resmi olarak bağlantılı değildir.</p>
+  </div>
+</footer>
+
+
+
+
+<button id="backToTopBtn" class="back-to-top" title="Yukarı Çık">
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="#ffffff" width="24" height="24">
+    <path d="M7.41 15.41L12 10.83l4.59 4.58L18 14l-6-6-6 6z"/>
+  </svg>
+</button>
+
+<div id="toast-container"></div>
+</body>
+</html>
