@@ -539,3 +539,66 @@ body {
 .modal-done-btn:hover {
     background-color: #27ae60;
 }
+
+
+
+/* ========================================================
+   NEDEN GROWÇARŞI? ÖZEL ALAN STİLLERİ
+   ======================================================== */
+.why-growcarsi-box {
+    margin-top: 20px;
+    padding-top: 15px;
+    border-top: 1px dashed #e0e0e0;
+}
+
+.why-growcarsi-box h4 {
+    font-size: 16px;
+    color: #111;
+    margin-bottom: 15px;
+    font-weight: 700;
+    letter-spacing: 0.5px;
+}
+
+.why-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 12px; /* İkon ile metin arasındaki boşluk */
+    margin-bottom: 12px;
+}
+
+.why-item:last-child {
+    margin-bottom: 0;
+}
+
+.why-icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #f7f9fa;
+    padding: 8px;
+    border-radius: 8px;
+    flex-shrink: 0; /* İkon kutusunun küçülmesini engeller */
+    border: 1px solid #eaeaea;
+}
+
+/* İkonlara göre hafif arka plan renk geçişleri (Opsiyonel kanka, çok şık durur) */
+.why-icon.fast-delivery {
+    background-color: rgba(255, 200, 22, 0.08);
+}
+.why-icon.secure-pay {
+    background-color: rgba(255, 70, 85, 0.08);
+}
+
+.why-text h5 {
+    font-size: 14px;
+    color: #222;
+    margin: 0 0 3px 0;
+    font-weight: 600;
+}
+
+.why-text p {
+    font-size: 12px;
+    color: #666;
+    margin: 0;
+    line-height: 1.4;
+}

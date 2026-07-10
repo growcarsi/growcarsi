@@ -288,6 +288,7 @@ h1, h2, h3, h4, h5, h6, p {
 }
 
 .cart-text {
+  color: #000;
   font-size: 14px;
   font-weight: 500;
 }
@@ -611,15 +612,14 @@ h1, h2, h3, h4, h5, h6, p {
   
   width: 360px; /* SSS sabit net genişliği */
   height: 450px; /* Slider yüksekliğiyle birebir eşit */
-  background-color: #1a1a1a;
-  border: 1px solid #2d2d2d;
+  background-color: #111926;
+border: 1px solid rgba(255, 200, 22, 0.2);
   border-radius: 8px;
   padding: 20px;
   display: flex;
   flex-direction: column;
   box-sizing: border-box;
   z-index: 15;
-  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
 }
 
 .faq-title-row {
