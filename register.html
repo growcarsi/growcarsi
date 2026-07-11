@@ -70,7 +70,7 @@
 
   <script type="module">
     // CDN üzerinden Firebase kayıt fonksiyonunu çekiyoruz kanka
-    import { auth } from "./auth.js";
+    import { auth } from "/growcarsi/auth.js";
     import { createUserWithEmailAndPassword } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-auth.js";
 
     const registerForm = document.getElementById("register-form");
@@ -95,7 +95,7 @@
             
             // 2 saniye sonra giriş sayfasına pasla
             setTimeout(() => {
-              window.location.href = "login.html";
+              window.location.href = "/growcarsi/login.html";
             }, 2000);
           })
           .catch((error) => {

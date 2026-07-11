@@ -70,7 +70,7 @@
   </div>
 
   <script type="module">
-import { auth, signInWithEmailAndPassword, GoogleAuthProvider, signInWithPopup } from "./auth.js";
+import { auth, signInWithEmailAndPassword, GoogleAuthProvider, signInWithPopup } from "/growcarsi/auth.js";
 
     const loginForm = document.getElementById("login-form");
     const errorDiv = document.getElementById("error-message");
@@ -87,7 +87,7 @@ import { auth, signInWithEmailAndPassword, GoogleAuthProvider, signInWithPopup }
       signInWithEmailAndPassword(auth, email, password)
         .then((userCredential) => {
           // Giriş başarılıysa ana sayfaya uçuruyoruz kanka
-          window.location.href = "/"; 
+          window.location.href = "/growcarsi"; 
         })
         .catch((error) => {
           errorDiv.style.display = "block";
@@ -106,7 +106,7 @@ if (googleBtn) {
     signInWithPopup(auth, provider)
       .then((result) => {
         console.log("Google ile giriş başarılı kanka:", result.user);
-        window.location.href = "index.html"; // Ana sayfaya uçur
+        window.location.href = "/growcarsi"; // Ana sayfaya uçur
       })
       .catch((error) => {
         const errorDiv = document.getElementById("error-message");
