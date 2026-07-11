@@ -62,7 +62,7 @@
 </div>
 <div class="user-auth-area">
   <span id="user-profile-name">Misafir</span>
-  <a href="/login.html" id="nav-login-btn" class="auth-btn">Giriş Yap</a>
+  <a href="/growcarsi/login.html" id="nav-login-btn" class="auth-btn">Giriş Yap</a>
   <button id="nav-logout-btn" class="auth-btn" style="display: none;">Çıkış Yap</button>
 </div>
     </div>
@@ -320,8 +320,8 @@
 <script>
   if ('serviceWorker' in navigator) {
     window.addEventListener('load', () => {
-      navigator.serviceWorker.register('/service-worker.js')
-        .then(reg => console.log('Service Worker taş gibi kaydedildi kanka:', reg.scope))
+      navigator.serviceWorker.register('/growcarsi/service-worker.js')
+        .then(reg => console.log('Service Worker kaydedildi', reg.scope))
         .catch(err => console.log('Service Worker patladı:', err));
     });
   }
