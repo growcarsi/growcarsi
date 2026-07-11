@@ -1,7 +1,7 @@
 # Orijinal kaynak kodları (Bunlar sadece senin bilgisayarında kalacak)
 lib/src/script-orj.js
 lib/src/sepet-orj.js
-auth.js
+auth-orj.js
 
 # Eğer Node.js bağımlılıkları yükleyeceksen
 node_modules/
